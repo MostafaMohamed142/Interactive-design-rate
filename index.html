@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Feedback</title>
+</head>
+<style>
+    .nums{
+        font-size: 20px;
+        border: 1px solid black;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50%;
+        padding: 5px;
+        margin: 4px;
+        cursor: pointer;
+
+    }
+    .nums:focus{
+        background-color: red;
+        
+    }
+    #front {
+        background-color: antiquewhite;
+        height: 335px;
+        overflow: hidden;
+        width: 363px;
+        text-align: center;
+    }
+    .iconStar {
+        float: left;
+        width: 25px;
+        height: 25px;
+  
+    }
+    #back{
+        display: none;
+        text-align: center;
+        background-color: cadetblue;
+        width: 330px;
+    }
+    #ratings{
+        display: block;
+    }
+    .feed {
+        color: black;
+        font-size: 26px;
+        padding: 5px;
+    }
+    .par {
+        font-size: 15px;
+        color: sienna;
+        padding: 5px;
+        line-height: 29px;
+        font-size: 16px;
+        line-height: 39px;
+    }
+    button {
+        font-size: 19px;
+        padding: 5px;
+        margin-top: 15px;
+        background-color: cadetblue;
+        color: white;
+        border-radius: 5px;
+        width: 86px;
+        cursor: pointer;
+    }
+    button:hover{
+        background-color: aqua;
+    }
+    #myfeed {
+        border: 1px solid darkgoldenrod;
+        font-size: 17px;
+        width: 170px;
+        margin-left: 80px;
+        border-radius: 6px;
+        color: black;
+        background-color: antiquewhite;
+    }
+</style>
+<body>
+    <div id="front">
+        <img src="images/icon-star.svg" class="iconStar"/>
+            <h2 class="feed">How did we do?</h2>
+            <p class="par">Please let us know how we did with your support request,All feedback is appericated to help us improve our Offering</p>
+            <div id="ratings">
+
+            </div>
+            <button type="submit" onclick="myBtn()">Submit</button>
+    </div>
+    <div id="back">
+        <img src="images/illustration-thank-you.svg" class="thank"/>
+        <p id="myfeed"></p>
+        <h3 style="font-size: 25px;
+        color: darkslateblue;
+        margin-bottom: -11px;">Thank you</h3>
+        <p style="font-size: 16px;
+        line-height: 35px;
+        color: floralwhite;
+        padding: 5px;">We appericate you giving the time to give a rating.If you ever need more support don't hesitate to get in touch!</p>
+    </div>
+    <script>
+        const rate = [1,2,3,4,5];
+        var ratings = document.getElementById("ratings");
+        var myfeed = document.getElementById('myfeed');
+        var nums = document.querySelector(".nums");
+        var front = document.getElementById('front')
+        var back = document.getElementById('back')
+        const maps = ()=>{
+            rate.map((r)=>{
+             return ratings.innerHTML += `<input class="nums" onclick='myNum(${r.valueOf()})' value=${r} readonly/>`
+            })
+        }
+        maps();
+        const selectedrates = [] ;
+        function myNum(val){
+             selectedrates.push(val)    
+            console.log(selectedrates) ;
+            return selectedrates;
+            
+        }
+        const myBtn = ()=>{
+            front.style.display = 'none';
+            back.style.display='block';
+            selectedrates.map(num =>{
+                myfeed.innerHTML = `<span class="select"> you selected ${num} / 5 </span>`
+            })
+        }
+    </script>
+</body>
+</html>
